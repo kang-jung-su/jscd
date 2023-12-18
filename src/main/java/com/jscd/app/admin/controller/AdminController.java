@@ -32,12 +32,8 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class AdminController {
 
-
-
     @Autowired
     AdminService adminService;
-
-
 
     //관리자 홈
     @GetMapping("/home")
@@ -158,7 +154,4 @@ public class AdminController {
         }
         return "redirect:/admin/read";
     }
-
-
-
 }
