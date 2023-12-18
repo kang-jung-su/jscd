@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootCamp.css"/>">
-    <title>bootCampList</title>
+    <title>BootCampList</title>
 </head>
 <body>
 <header>
@@ -85,7 +85,7 @@
                 <li class="applyTxt2">${list.lastPrice} / Month</li>
                 <li class="applyTxt">${list.location}</li>
             </ul>
-            <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}'/>">수강 신청</a></button>
+            <button type="button"><a href="<c:url value='/btTraining/read?registCode=${list.registCode}&courseCode=${list.courseCode}'/>">수강 신청</a></button>
         </div>
         </c:forEach>
     </div>

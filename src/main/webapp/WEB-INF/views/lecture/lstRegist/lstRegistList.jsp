@@ -12,6 +12,8 @@
 <head>
     <title>정석코딩 강의 등록</title>
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/jscdReset.css"/>">
     <style>
         #registListAll{
             width: 960px;
@@ -153,8 +155,8 @@
         <c:forEach var="list" items="${list}">
             <tr class="registTr">
                 <td class="registTd">${list.registCode}</td>
-<%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist?registCode=${lstRegist.registCode}&page=${page}&pageSize=${pageSize}'/>">${list.title}</a></td>--%>
-                <td class="registTd"><a href="<c:url value='/lstRegist/detailRegist?registCode=${list.registCode}&page=${page}&pageSize=${pageSize}'/>">${list.title}</a></td>
+<%--                <td class="registTd"><a href="<c:url value='/onlyAdmin/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>--%>
+                <td class="registTd"><a href="<c:url value='/lstRegist/detailRegist${ph.sc.queryString}&registCode=${list.registCode}'/>">${list.title}</a></td>
                 <td class="registTd">${list.regDate} </td>
             </tr>
         </c:forEach>

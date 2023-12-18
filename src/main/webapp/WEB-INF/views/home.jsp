@@ -22,39 +22,33 @@
 
 			<!-- Full-width images with number and caption text -->
 			<div class="mySlides fade">
-				<div class="numbertext">1 / 6</div>
-				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425456/ltekybkstiyl7faumrsq/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<img src="<c:url value="/img/homeTeacher_W2500H500.png"/>" style="width:100%;  object-fit: cover;">
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">2 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425435/hwxwxqxfwo4htfgqksbu/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">3 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425448/rnelglmoujifzlbzykxw/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">4 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">5 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425440/xacfj7abitmifeyciiia/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<div class="mySlides fade">
-				<div class="numbertext">6 / 6</div>
 				<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-				<div class="text">ACNE STUDIO</div>
+				<div class="text">JUNGSUK_CODING</div>
 			</div>
 
 			<!-- Next and previous buttons -->
@@ -143,39 +137,23 @@
 
 				<!-- Full-width images with number and caption text -->
 				<div class="mySlides01 fade">
-					<div class="numbertext01">1 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425456/ltekybkstiyl7faumrsq/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/lectureRoom.png"/>" style="width:100%; object-fit: cover;">
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">2 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425435/hwxwxqxfwo4htfgqksbu/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/projectRoom.png"/>" style="width:100%; object-fit: cover;">
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">3 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425448/rnelglmoujifzlbzykxw/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/deskAndChair.png"/>" style="width:100%; object-fit: cover;">
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">4 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/locker.png"/>" style="width:100%; object-fit: cover;">
 				</div>
 
 				<div class="mySlides01 fade">
-					<div class="numbertext01">5 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425440/xacfj7abitmifeyciiia/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
-				</div>
-
-				<div class="mySlides01 fade">
-					<div class="numbertext01">6 / 6</div>
-					<img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
-					<div class="text01">ACNE STUDIO</div>
+					<img src="<c:url value="/img/restArea.png"/>" style="width:100%; object-fit: cover;">
 				</div>
 
 				<!-- Next and previous buttons -->
@@ -191,7 +169,6 @@
 				<span class="dot01" onclick="currentSlide01(2)"></span>
 				<span class="dot01" onclick="currentSlide01(3)"></span>
 				<span class="dot01" onclick="currentSlide01(4)"></span>
-				<span class="dot01" onclick="currentSlide01(5)"></span>
 			</div>
 <%--하단 슬라이드 끝--%>
 <%--유튜브--%>
