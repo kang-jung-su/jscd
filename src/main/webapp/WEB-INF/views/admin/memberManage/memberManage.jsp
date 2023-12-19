@@ -26,14 +26,14 @@
 
 <div id="infoDetailBox">
 
-    <h2 id="infoTitle">회원 정보 상세보기</h2>
+    <h2 id="infoTitle">회원 상세보기</h2>
 
     <label style="margin-right: 3px;">회원번호</label>
     <input type="text" class="infoInputBox" name="mebrNo" id="mebrNo" readonly value="${memberDto.mebrNo}"><br>
     <label style="margin-right: 15px;">아이디</label>
-    <input type="text" class="infoInputBox" readonly value="${memberDto.id}"><br>
+    <input type="text" class="infoInputBox" readonly value="${memberDto.id}" id="id"><br>
     <label style="margin-right: 25px;">이름</label>
-    <input type="text" class="infoInputBox" readonly value="${memberDto.name}"><br>
+    <input type="text" class="infoInputBox" readonly value="${memberDto.name}" id="name"><br>
     <label style="margin-right: 15px;">닉네임</label>
     <input type="text" class="infoInputBox" readonly value="${memberDto.nickname}"><br>
     <label>생년월일</label>
@@ -41,6 +41,8 @@
     <%--        <input type="text"  class="infoInputBox" value="<fmt:formatDate value="${memberDto.birth}" pattern="yyyy-MM-dd" type="date"/>"><br>--%>
     <label>휴대전화</label>
     <input type="text" class="infoInputBox" readonly value="${memberDto.phone}"><br>
+    <input type="hidden" class="infoInputBox" readonly value="${memberDto.grade}" name="originGrade" id="originGrade"><br>
+
     <label style="margin-right: 25px;">등급</label>
     <select name="grade" id="grade" class="modifySelect">
         <c:if test="${memberDto.grade eq '일반'}">
@@ -81,7 +83,7 @@
     <div id="adminBtnBox">
         <input type="button" value="수정" class="modifyBtn">
         <input type="button" value="목록" class="backBtn"
-               onclick="location.href='/onlyAdmin/memberManage/list?page=${page}'">
+               onclick="location.href='/adminManage/memberManage/list?page=${page}'">
     </div>
 
 </div>
@@ -129,23 +131,19 @@
             } else {
                 const form = document.createElement('form');
                 form.setAttribute('method', 'post');
-                form.setAttribute('action', '/onlyAdmin/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}');
+                form.setAttribute('action', '/adminManage/memberManage/modify?page=${page}&mebrNo=${memberDto.mebrNo}');
 
                 var status = document.getElementById('status');
                 var grade = document.getElementById('grade');
                 var etc = document.getElementById('etc');
                 var mebrNo = document.getElementById('mebrNo');
-                var id = document.getElementById('id');
-                var name = document.getElementById('name');
-                var pwd = document.getElementById('pwd');
+                var originGrade = document.getElementById('originGrade');
 
                 form.appendChild(grade);
                 form.appendChild(status);
-                form.appendChild(id);
                 form.appendChild(etc);
                 form.appendChild(mebrNo);
-                form.appendChild(name);
-                form.appendChild(pwd);
+                form.appendChild(originGrade);
 
                 console.log(form)
                 document.body.appendChild(form);

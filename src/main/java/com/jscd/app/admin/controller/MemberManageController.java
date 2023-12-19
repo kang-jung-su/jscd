@@ -3,6 +3,7 @@ package com.jscd.app.admin.controller;
 import com.jscd.app.admin.domain.Pageable;
 import com.jscd.app.admin.domain.SearchCondition;
 import com.jscd.app.admin.dto.MemberManageDto;
+import com.jscd.app.admin.service.AdminService;
 import com.jscd.app.admin.service.MemberManageService;
 import com.jscd.app.member.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ import java.util.List;
 	 */
 
 @Controller
-@RequestMapping("/onlyAdmin/memberManage")
+@RequestMapping("/adminManage/memberManage")
 public class MemberManageController {
 
     @Autowired
     MemberManageService manageService;
+    @Autowired
+    AdminService adminService;
 
     @GetMapping("/list") //전체 회원 목록 페이지
     public String getList(SearchCondition sc, Model model) {
@@ -64,7 +67,7 @@ public class MemberManageController {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 모델에 전달, list 목록으로 돌아가기
             model.addAttribute("msg", "READ_ERR");
-            return "redirect:/onlyAdmin/memberManage/list";
+            return "redirect:/adminManage/memberManage/list";
         }
 
         return "/admin/memberManage/memberManage";
@@ -72,21 +75,26 @@ public class MemberManageController {
 
 
     @PostMapping("/modify") //상세 페이지 수정
-    public String infoModify(Integer page, MemberDto memberDto, Model model) {
+    public String infoModify(Integer page, MemberDto memberDto, Model model,String originGrade) {
+
 
         try {
             //입력 받은 dto를 update
             manageService.modifyDetail(memberDto);
+            MemberDto adminDel = manageService.readMember(memberDto.getMebrNo());
+            if(originGrade.equals("관리자")){//기존 등급이 관리자라면, 관리자 테이블에서 삭제
+                adminService.removeAdmin(adminDel.getId());
+            }
             //성공 msg 모델에 전달
             model.addAttribute("msg", "MOD_OK");
         } catch (Exception e) {
             e.printStackTrace();
             //에러 발생 시, 에러 msg 전달, 읽기 화면으로 이동
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/memberManage/read?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
+            return "redirect:/adminManage/memberManage/read?page=" + page + "&mebrNo=" + memberDto.getMebrNo();
         }
 
-        return "redirect:/onlyAdmin/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
+        return "redirect:/adminManage/memberManage/read?page="+page+"&mebrNo="+memberDto.getMebrNo();
     }
 
     @PostMapping("/modifyMain") //메인 페이지 등급/상태 일괄 수정
@@ -105,10 +113,10 @@ public class MemberManageController {
             e.printStackTrace();
             //실패 시, 에러 msg 전달. list 목록으로 리다이렉트
             model.addAttribute("msg", "MOD_ERR");
-            return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+            return "redirect:/adminManage/memberManage/list?page=" + page;
         }
 
-        return "redirect:/onlyAdmin/memberManage/list?page=" + page;
+        return "redirect:/adminManage/memberManage/list?page=" + page;
     }
 
 

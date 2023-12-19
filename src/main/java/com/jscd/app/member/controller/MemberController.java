@@ -16,6 +16,8 @@ import com.jscd.app.member.service.MemberService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,7 @@ public class MemberController {
 	private KakaoLoginBo kakaoLoginBo;
 	private String apiResult = null;
 	private InstructorInfoService infoService;
+
 	@Autowired
 	public MemberController(MemberService memberService, NaverLoginBo naverLoginBo,KakaoLoginBo kakaoLoginBo,InstructorInfoService infoService){
 		this.memberService = memberService;
@@ -43,6 +46,12 @@ public class MemberController {
 		this.infoService = infoService;
 	}
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	//로그인 페이지 이동
 	@GetMapping("/login")
@@ -204,7 +213,7 @@ public class MemberController {
 
 		//1. id, pwd 체크
 		//1-1 일치하지 않음.
-		if(!memberService.login(id, pwd)){
+		if(!memberService.login(id,pwd)){
 			String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 			map.put("redirect", "/member/login?msg="+msg);
 			return map;
@@ -244,9 +253,17 @@ public class MemberController {
 		Map<String, String> map = new HashMap<>();
 
 		try{
+			// 비밀번호 암호화
+			String pwd = memberDto.getPwd();
+			System.out.println("signup , pwd = " + pwd);
+			String securePwd = passwordEncoder.encode(pwd);
+			System.out.println("signup , securePwd = " + securePwd);
+			memberDto.setPwd(securePwd);
+
 			//회원가입에 성공했을 경우
 			System.out.println("hello, signup" + memberDto);
 			memberService.signup(memberDto);
+
 			//회원가입 시 약관 등록
 			memberService.insertTermsYN(memberDto);
 			map.put("redirect","/member/login");
@@ -257,7 +274,7 @@ public class MemberController {
 		return map;
 	}
 
-	//회원 개인정보수정 페이지 이동
+	//회원 개인정보수정 페이지 이동(비밀번호 확인 페이지)
 	@GetMapping("/memberEdit")
 	public String memberEditPage(Model model,HttpSession session) throws Exception{
 		//등급이 강사라면, 사이드바에 '강사 소개말' 메뉴 보이도록 해야돼서, 등급 체크를 위해 현재 로그인된 member객체 jsp에 보내주기
@@ -266,7 +283,40 @@ public class MemberController {
 		model.addAttribute("memberDto",memberDto);
 		return "/member/myPagePwdChk";
 	}
-	@GetMapping("/memberPwdChk")
+
+	//비밀번호 확인 후, 일치한다면 마이페이지로 이동 ⭐️
+	@PostMapping("/memberEdit")
+	public String memberPwdChk(String pwd,Model model,HttpSession session)throws Exception{
+
+		String id = (String)session.getAttribute("id");
+		MemberDto memberDto = memberService.memberSelect(id);
+		model.addAttribute("memberDto",memberDto);
+		if(!pwd.equals(memberDto.getPwd())){
+			//일치하지 않는다면, 에러메세지 전달
+			model.addAttribute("msg","PWD_ERR");
+			return "redirect:/member/memberEdit";
+		}
+		//일치한다면, 마이페이지 수정 페이지로 이동
+		return "redirect:/member/memberEdit/read";
+	}
+
+	//개인정보수정 ⭐️
+	@PostMapping("/memberEdit/modify")
+	public String memberEdit(MemberDto memberDto,Model model) {
+		try{
+			memberService.memberEdit(memberDto);
+			model.addAttribute("msg","MOD_OK");
+		}catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg","MOD_ERR");
+			return "redirect:/member/memberEdit/read";
+		}
+		return "redirect:/member/memberEdit/read";
+
+	}
+
+ //수정 후 읽기 페이지  ⭐️
+	@GetMapping("/memberEdit/read")
 	public String memberPwdChk(Model model, HttpServletRequest request) throws Exception{
 		//세션 값 가져와서 아이디 조회
 		HttpSession session = request.getSession();
@@ -279,21 +329,8 @@ public class MemberController {
 		return "/member/myPage";
 	}
 
-	//회원, 개인정보수정 기능 구현
-	@PostMapping("/memberEdit")
-	public Map<String, String> memberEdit(MemberDto memberDto) throws Exception{
-		Map<String, String> map = new HashMap<>();
 
-		try{
-			//개인정보수정
-			memberService.memberEdit(memberDto);
-			map.put("redirect","/member/login");
-		}catch (Exception e){
-			//회원가입에 실패했을 경우
-			map.put("error","개인정보수정에 실패했습니다.");
-		}
-		return map;
-	}
+
 
 
 
@@ -369,7 +406,7 @@ public class MemberController {
 		}catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("msg", "READ_ERR");
-			return "redirect:/member/memberPwdChk";
+			return "redirect:/member/memberEdit";
 		}
 		return "/member/instructorIntro";
 	}
