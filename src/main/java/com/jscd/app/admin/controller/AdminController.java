@@ -2,7 +2,9 @@ package com.jscd.app.admin.controller;
 
 
 import com.jscd.app.admin.dto.AdminDto;
+import com.jscd.app.admin.dto.DailySummaryDto;
 import com.jscd.app.admin.service.AdminService;
+import com.jscd.app.admin.service.DashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ import javax.validation.Valid;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 	/*
 	작성일:20231126
@@ -32,17 +35,24 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class AdminController {
 
-
-
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    DashBoardService dashBoardService;
 
-
-    //관리자 홈
+    //관리자 홈(대시보드)
     @GetMapping("/home")
-    public String adminHome() {return "admin/dashBoard";}
+    public String DashBoard(Model model, HttpServletRequest request) {
 
+        List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
+
+        model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
+
+        model.addAttribute("weekMonthData", dashBoardService.weekMonthData());
+
+        return "admin/dashBoard";
+    }
 
     //로그인 화면 보여주기
     @GetMapping("/login")
@@ -156,7 +166,4 @@ public class AdminController {
         }
         return "redirect:/admin/read";
     }
-
-
-
 }

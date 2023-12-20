@@ -128,7 +128,7 @@
         .sidenav a {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 25px;
             color: #f1f1f1;
             display: block;
         }
