@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jscd.app.mapper.DailySummaryMapper">
+
+    <insert id="insert" parameterType="DailySummaryDto">
+        INSERT INTO dailySummary
+        (date, pageviews, visitors, orders, revenue, signups, inquiries, reviews, regDate)
+        VALUES (#{date}, #{pageviews}, #{visitors}, #{orders}, #{revenue}, #{signups}, #{inquiries}, #{reviews}, now())
+    </insert>
+
+    <!-- 최근7일 전체 정보 조회 -->
+    <select id="selectRecentData" resultType="DailySummaryDto">
+        SELECT *
+        FROM dailySummary
+        WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()
+        order by date desc ;
+    </select>
+
+    <!-- 이번달 전체 정보 조회 -->
+    <select id="selectMonthData" resultType="DailySummaryDto">
+        SELECT *
+        FROM dailySummary
+        WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+          AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())
+        ORDER BY date DESC;
+    </select>
+
+    <!-- 최근 7일 주문 합계 조회 -->
+    <select id="selectWeekOrders" resultType="int">
+        select sum(orders) as weekOrders
+        from (
+                 SELECT orders
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 최근 7일 매출액 합계 조회 -->
+    <select id="selectWeekRevenue" resultType="int">
+        select sum(revenue) as weekRevenue
+        from (
+                 SELECT revenue
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 최근 7일 방문자수 합계 조회 -->
+    <select id="selectWeekVisitors" resultType="int">
+        select sum(visitors) as weekVisitors
+        from (
+                 SELECT visitors
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 최근 7일 가입자수 합계 조회 -->
+    <select id="selectWeekSignups" resultType="int">
+        select sum(signups) as weekSignups
+        from (
+                 SELECT signups
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 최근 7일 문의수 합계 조회 -->
+    <select id="selectWeekInquiries" resultType="int">
+        select sum(inquiries) as weekInquiries
+        from (
+                 SELECT inquiries
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 최근 7일 후기 합계 조회 -->
+    <select id="selectWeekReviews" resultType="int">
+        select sum(reviews) as weekReviews
+        from (
+                 SELECT reviews
+                 FROM dailySummary
+                 WHERE STR_TO_DATE(date, '%Y-%m-%d') BETWEEN CURDATE() - INTERVAL 6 DAY AND CURDATE()) as e ;
+    </select>
+
+    <!-- 이번달 전체 정보 조회 -->
+    <select id="selectMonthAllData" resultType="int">
+        SELECT *
+        FROM dailySummary
+        WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+          AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE()) ;
+    </select>
+
+    <!-- 이번달 주문수 조회 -->
+    <select id="selectMonthOrders" resultType="int">
+        select sum(orders) as monthOrders
+        from (
+                 SELECT orders
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+    <!-- 이번달 매출액 조회 -->
+    <select id="selectMonthRevenue" resultType="int">
+        select sum(revenue) as monthRevenue
+        from (
+                 SELECT revenue
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+    <!-- 이번달 방문자 정보 조회 -->
+    <select id="selectMonthVisitors" resultType="int">
+        select sum(visitors) as monthVisitors
+        from (
+                 SELECT visitors
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+    <!-- 이번달 가입자수 정보 조회 -->
+    <select id="selectMonthSignups" resultType="int">
+        select sum(signups) as monthSignups
+        from (
+                 SELECT signups
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+    <!-- 이번달 문의 조회 -->
+    <select id="selectMonthInquires" resultType="int">
+        select sum(inquiries) as monthInquires
+        from (
+                 SELECT inquiries
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+    <!-- 이번달 후기 조회 -->
+    <select id="selectMonthReviews" resultType="int">
+        select sum(reviews) as monthReviews
+        from (
+                 SELECT reviews
+                 FROM dailySummary
+                 WHERE YEAR(STR_TO_DATE(date, '%Y-%m-%d')) = YEAR(CURDATE())
+                   AND MONTH(STR_TO_DATE(date, '%Y-%m-%d')) = MONTH(CURDATE())) as e ;
+    </select>
+
+</mapper>
