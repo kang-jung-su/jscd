@@ -61,7 +61,7 @@ public class BtApplicationDaoImpl implements BtApplicationDao {
     }
 
     @Override
-    public int confirmApplcation(BtApplicationDto dto) throws Exception{
+    public BtApplicationDto confirmApplcation(BtApplicationDto dto) throws Exception{
         return session.selectOne(namespace + "confirmApplication", dto);
     }
 
