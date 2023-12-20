@@ -23,6 +23,7 @@ import javax.validation.Valid;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 	/*
 	작성일:20231126
