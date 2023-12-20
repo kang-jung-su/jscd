@@ -1,3 +1,5 @@
+231218
+
 <%--
   Created by IntelliJ IDEA.
   User: george
@@ -53,11 +55,6 @@
                     <input type="text" class="inputTxt" name="courseCode" value="${lstRegistDto.courseName}" ${mode=='new' ? '' : 'disabled="disabled"'}>
                 </c:when>
             </c:choose>
-        </div>
-        <br>
-        <div>
-            <p>과목구분</p>
-            <input type="text" class="inputTxt" name="courseCategory" value="${lstRegistDto.courseCategory}" ${mode=='new' ? '' : 'disabled="disabled"'} placeholder="세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA" onfocus="this.placeholder=''" onblur="this.placeholder='세미나 개설시 입력해주세요 ex)디자인패턴 - JAVA'">
         </div>
         <br>
         <div class="classEnrollInfo">
@@ -309,7 +306,6 @@
                 $("input[name=title]", form).attr('readonly', false);
                 $("input[name=discription]", form).attr('readonly', false);
                 $("select[name=courseCode]", form).attr('disabled', false);
-                $("input[name=courseCategory]", form).attr('disabled', false);
 
                 $("select[name=onOff]", form).attr('disabled', false);
                 $("select[name=status]", form).attr('disabled', false);
