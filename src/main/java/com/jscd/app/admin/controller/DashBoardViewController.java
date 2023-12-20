@@ -2,6 +2,8 @@ package com.jscd.app.admin.controller;
 
 import com.jscd.app.admin.dto.DailySummaryDto;
 import com.jscd.app.admin.service.DashBoardService;
+import com.jscd.app.admin.service.MemberManageService;
+import com.jscd.app.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class DashBoardViewController {
 
     @Autowired
     DashBoardService dashBoardService;
+    @Autowired
+    MemberService memberService;
 
     @GetMapping("/home")
     public String DashBoard(Model model, HttpServletRequest request) {

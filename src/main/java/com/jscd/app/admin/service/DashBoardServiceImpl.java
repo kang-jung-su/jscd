@@ -44,6 +44,7 @@ public class DashBoardServiceImpl implements DashBoardService {
         weekMonthData.put("monthInquires", dailySummaryDao.selectMonthInquires());
         weekMonthData.put("monthReviews", dailySummaryDao.selectMonthReviews());
 
+
         return weekMonthData;
     }
 
