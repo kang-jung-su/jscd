@@ -40,8 +40,8 @@
                 <li id="apply">
                     <p>교육신청</p>
                     <ul class="Menu">
-                        <li><a href="<c:url value="/btTraining/list"/>#">부트캠프 신청</a></li>
-                        <li><a href="<c:url value="/smTraining/list"/>#">세미나 신청</a></li>
+                        <li><a href="<c:url value="/btTraining/list"/>">부트캠프 신청</a></li>
+                        <li><a href="<c:url value="/smTraining/list"/>">세미나 신청</a></li>
                     </ul>
                 </li>
                 <li id="community">
