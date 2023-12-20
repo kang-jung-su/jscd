@@ -52,44 +52,26 @@
     <%--231216 정수 컨트롤러로 보내는 경로 필요함 --%>
     <div id="smApplyList">
         <c:forEach var="list" items="${list}">
-            <div id="smApplyBox">
-                <a href="<c:url value='/smTraining/read?registCode=${list.registCode}'/>">
-                    <div id="smApplyBox_contents">
-                        <div id="smApplyBox_info">
-                            <div>${list.status}</div>
-                            <h1>${list.courseCategory}</h1>
-                            <span id="smApplySpan"></span>
-                        </div>
-                        <div id="smApplyBox_img">
-                            <img src="<c:url value="/upload/img${list.storedFileName}"/>">
-                        </div>
+        <div id="smApplyBox">
+            <a href="<c:url value='/smTraining/read?registCode=${list.registCode}'/>">
+                <div>
+                    <div>
+                        <div>${list.status}</div>
+                        <h1>${list.title}</h1>
                     </div>
-                    <p>${list.title}</p>
-                </a>
-            </div>
+                    <span id="smApplySpan"></span>
+                    <img src="<c:url value="/upload/img${list.storedFileName}"/>">
+                </div>
+            </a>
+            <p>${list.title}</p>
+        </div>
         </c:forEach>
     </div>
-    <%--    <div id="smApplyList">--%>
-    <%--        <c:forEach var="list" items="${list}">--%>
-    <%--            <a href="<c:url value="/smTraining/read?registCode=${list.registCode}"/>">--%>
-    <%--                <div>--%>
-    <%--                    <ul>--%>
-    <%--                        <li>${list.status}</li>--%>
-    <%--                        <li>${list.courseCategory}</li>--%>
-    <%--                        <span id="smApplySpan"></span>--%>
-    <%--                    </ul>--%>
-    <%--                    <img src="<c:url value="/upload/img${list.storedFileName}"/>">--%>
-    <%--                </div>--%>
-    <%--                <p>${list.title}</p>--%>
-    <%--            </a>--%>
-    <%--        </c:forEach>--%>
-    <%--    </div>--%>
 </div>
+
 <footer>
     <jsp:include page="../footer.jsp"/>
 </footer>
 
-
 </body>
 </html>
-
