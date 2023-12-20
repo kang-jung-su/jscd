@@ -18,15 +18,15 @@ public class DashBoardViewController {
     @Autowired
     DashBoardService dashBoardService;
 
-    //관리자 락커 페이지
     @GetMapping("/home")
     public String DashBoard(Model model, HttpServletRequest request) {
 
-        List<DailySummaryDto> dailySummaryDtoList = dashBoardService.getlast7DayData();
+        List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
 
         model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
 
+        model.addAttribute("weekMonthData", dashBoardService.weekMonthData());
+
         return "admin/dashBoard";
     }
-
 }

@@ -2,7 +2,9 @@ package com.jscd.app.admin.controller;
 
 
 import com.jscd.app.admin.dto.AdminDto;
+import com.jscd.app.admin.dto.DailySummaryDto;
 import com.jscd.app.admin.service.AdminService;
+import com.jscd.app.admin.service.DashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -35,10 +37,21 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    //관리자 홈
-    @GetMapping("/home")
-    public String adminHome() {return "admin/dashBoard";}
+    @Autowired
+    DashBoardService dashBoardService;
 
+    //관리자 홈(대시보드)
+    @GetMapping("/home")
+    public String DashBoard(Model model, HttpServletRequest request) {
+
+        List<DailySummaryDto> dailySummaryDtoList = dashBoardService.initViewData();
+
+        model.addAttribute("dailySummaryDtoList", dailySummaryDtoList);
+
+        model.addAttribute("weekMonthData", dashBoardService.weekMonthData());
+
+        return "admin/dashBoard";
+    }
 
     //로그인 화면 보여주기
     @GetMapping("/login")

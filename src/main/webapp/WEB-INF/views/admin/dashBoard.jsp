@@ -17,7 +17,6 @@
         body {
             height: 100%;
             width: 100%;
-            margin: 0;
             padding: 0;
         }
 
@@ -45,11 +44,11 @@
         #warp1-layer3 {
             overflow: hidden;
             /*margin: 1rem;*/
-            /*margin-top: 1rem;*/
+            margin-top: 1rem;
             margin-left: 1rem;
             margin-bottom: 1rem;
             width: calc(100% - 2rem);
-            height: 18%;
+            height: 40%;
         }
 
         #warp1-layer3Area {
@@ -58,8 +57,33 @@
             padding-right: 2rem;
             width: calc(100% - 1rem);
             height: 100%;
-            background-color: white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .layer3s {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            /*align-items: center;*/
+            width: 100%;
+            height: 50%;
+        }
+
+        .layer3FirstRow {
+            margin-bottom: 1rem;
+        }
+
+        .layer3Elements {
+            width: calc(50% - 0.5rem);
+            height: 100%;
+            background-color: white;
+        }
+
+        .layer3FirstColum {
+            margin-right: 1rem;
         }
 
         .titleArea {
@@ -81,25 +105,25 @@
             line-height: 100%;
         }
 
-        #todoAll {
-            margin-left: 1rem;
-            margin-top: 1rem;
-            border-radius: 0.7rem;
-            background-color: #FF4646;
-            border: none;
-            color: white;
-            width: 3rem;
-            height: 100%;
-            font-size: 1.5rem;
-            font-weight: 500;
-            padding: 0.25rem;
-            text-align: center;
-            line-height: 100%;
-        }
+        /*#todoAll {*/
+        /*    margin-left: 1rem;*/
+        /*    margin-top: 1rem;*/
+        /*    border-radius: 0.7rem;*/
+        /*    background-color: #FF4646;*/
+        /*    border: none;*/
+        /*    color: white;*/
+        /*    width: 3rem;*/
+        /*    height: 100%;*/
+        /*    font-size: 1.5rem;*/
+        /*    font-weight: 500;*/
+        /*    padding: 0.25rem;*/
+        /*    text-align: center;*/
+        /*    line-height: 100%;*/
+        /*}*/
 
-        #todoAll:hover {
-            cursor: default;
-        }
+        /*#todoAll:hover {*/
+        /*    cursor: default;*/
+        /*}*/
 
         hr {
             border: none;
@@ -107,12 +131,13 @@
             background-color: #000;
         }
 
-        #todolistDetail {
+        .todolistDetail {
             width: 100%;
-            height: 100%;
+            height: 70%;
             display: flex;
             flex-direction: column;
             padding-bottom: 2rem;
+            margin-left: 1rem;
         }
 
         .todolists {
@@ -125,12 +150,25 @@
         }
 
         .todolistTitle {
-            width: 13%;
+            width: 16%;
             height: 50%;
             font-size: 1.2rem;
             font-weight: 500;
             text-align: center;
             line-height: 100%;
+            /*margin-left: 1rem;*/
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*.forFlexUp {*/
+        /*    flex:1.1*/
+        /*}*/
+
+        .row2 {
+            margin-left: 1rem;
         }
 
         .todolistNum {
@@ -493,30 +531,66 @@
     <div id="warp1">
         <div id="warp1-layer3">
             <div id="warp1-layer3Area">
-                <div class="titleArea">
-                    <div class="title">오늘의 할일</div>
-                    <button id="todoAll">4</button>
-                </div>
-                <hr>
-                <div id="todolistDetail">
-                    <div class="todolists">
-                        <div class="todolistTitle">신규주문 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">취소관리 <span class="todolistNum">1</span></div>
-                        <div class="todolistTitle">반품관리 <span class="todolistNum">1</span></div>
-                        <div class="todolistTitle">교환관리 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">답변대기 문의 <span class="todolistNum">2</span></div>
+                <div class="layer3s layer3FirstRow">
+                    <div class = "layer3Elements layer3FirstColum">
+                        <div class="titleArea">
+                            <div class="title">진행중 과정 현황</div>
+                        </div>
+                        <hr>
+                        <div class="todolistDetail">
+                            <div class="todolists">
+                                <div class="todolistTitle">전체 <span class="todolistNum">0</span></div>
+                                <div class="todolistTitle">부트캠프 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">세미나 <span class="todolistNum">1</span></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="todolists">
-                        <div class="todolistTitle">출석수 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">퇴실수 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">입금대기 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">예약완료 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">취소요청 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">취소처리중 <span class="todolistNum">0</span></div>
-                        <div class="todolistTitle">문의 <span class="todolistNum">0</span></div>
+                    <div class = "layer3Elements">
+                        <div class="titleArea">
+                            <div class="title">회원 현황</div>
+                        </div>
+                        <hr>
+                        <div class="todolistDetail">
+                            <div class="todolists">
+                                <div class="todolistTitle">일반 <span class="todolistNum">0</span></div>
+                                <div class="todolistTitle">학생 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">관리자 <span class="todolistNum">1</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
+                <div class="layer3s">
+                    <div class = "layer3Elements layer3FirstColum">
+                        <div class="titleArea">
+                            <div class="title">부트캠프 신청 현황</div>
+                        </div>
+                        <hr>
+                        <div class="todolistDetail">
+                            <div class="todolists row2">
+                                <div class="todolistTitle">승인대기 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">승인 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">미승인 <span class="todolistNum">0</span></div>
+                                <div class="todolistTitle forFlexUp">결제대기 <span class="todolistNum">2</span></div>
+                                <div class="todolistTitle">등록 <span class="todolistNum">2</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "layer3Elements">
+                        <div class="titleArea">
+                            <div class="title">세미나 신청 현황</div>
+                        </div>
+                        <hr>
+                        <div class="todolistDetail">
+                            <div class="todolists row2">
+                                <div class="todolistTitle">승인대기 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">승인 <span class="todolistNum">1</span></div>
+                                <div class="todolistTitle">미승인 <span class="todolistNum">0</span></div>
+                                <div class="todolistTitle forFlexUp">결제대기 <span class="todolistNum">2</span></div>
+                                <div class="todolistTitle">등록 <span class="todolistNum">2</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -561,22 +635,23 @@
                             </div>
                         </c:forEach>
                     </div>
-
                     <div class="tableRows tableBodyRows" id="lastRowElement2">
-                        <span class="tableElement dayElement">최근 7일 합계</span><span
-                            class="tableElement">69건</span><span
-                            class="tableElement revenueElement">5050000원</span><span
-                            class="tableElement">466명</span><span
-                            class="tableElement">34명</span><span class="tableElement">322</span><span
-                            class="tableElement">24</span>
+                        <span class="tableElement dayElement">최근 7일 합계</span>
+                        <span class="tableElement">${weekMonthData.weekOrders}건</span>
+                        <span class="tableElement revenueElement">${weekMonthData.weekRevenue}원</span>
+                        <span class="tableElement">${weekMonthData.weekVisitors}명</span>
+                        <span class="tableElement">${weekMonthData.weekSignups}명</span>
+                        <span class="tableElement">${weekMonthData.weekInquires}</span>
+                        <span class="tableElement">${weekMonthData.weekReviews}</span>
                     </div>
                     <div class="tableRows tableBodyRows" id="lastRowElement">
-                        <span class="tableElement dayElement">이번달 합계</span><span
-                            class="tableElement">169건</span><span
-                            class="tableElement revenueElement">16600000원</span><span
-                            class="tableElement">1524명</span><span
-                            class="tableElement">94명</span><span class="tableElement">977</span><span
-                            class="tableElement">82</span>
+                        <span class="tableElement dayElement">이번달 합계</span>
+                        <span class="tableElement">${weekMonthData.monthOrders}건</span>
+                        <span class="tableElement revenueElement">${weekMonthData.monthRevenue}원</span>
+                        <span class="tableElement">${weekMonthData.monthVisitors}명</span>
+                        <span class="tableElement">${weekMonthData.monthSignups}명</span>
+                        <span class="tableElement">${weekMonthData.monthInquires}</span>
+                        <span class="tableElement">${weekMonthData.monthReviews}</span>
                     </div>
                 </div>
             </div>
@@ -585,7 +660,7 @@
         <div class="warp1-layer21">
             <div class="warp1-layers layer1reset">
                 <div class="titleArea">
-                    <div class="title">문의&수강후기</div>
+                    <div class="title">Q&A 수강후기</div>
                 </div>
                 <hr>
                 <div class="boardContents">
@@ -629,7 +704,7 @@
             </div>
             <div class="warp1-layers layer1reset">
                 <div class="titleArea">
-                    <div class="title">컨텐츠 반응</div>
+                    <div class="title">공지사항</div>
                 </div>
                 <hr>
                 <div class="boardContents">
@@ -678,7 +753,6 @@
             <div id="warp2-top-3">
                 <div id="profileImgArea">
                     <div id="profileImgCircle">
-                        <img id="adminProfileImg" src="../img/dashBoard/profile.jpg" alt="user">
                     </div>
                 </div>
                 <div id="memberName">steve</div>

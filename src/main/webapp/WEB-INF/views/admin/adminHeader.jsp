@@ -178,7 +178,7 @@
 <div id="headerBox" style="height: 50px; position: fixed; top: 0; left: 0; width: 100%;  background-color: #182566;  color: #f1f1f1;
 z-index: 1000; float: right;/">
     <div id="headerTop">
-        <h1 id="admin_title" onclick="location='/admin/home'">정석코딩 관리자 시스템</h1>
+        <h1 id="admin_title" onclick="location='/dashBoard/home'">정석코딩 관리자 시스템</h1>
         <ul>
             <li><a class="admin_group" href="<c:url value='/admin/logout'/>">로그아웃</a></li>
             <li><a>&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>

@@ -110,10 +110,9 @@ public class DailySummaryDto {
         return Objects.hash(getDate(), getPageviews(), getVisitors(), getOrders(), getRevenue(), getSignups(), getInquiries(), getReviews(), getRegDate());
     }
 
-
     @Override
     public String toString() {
-        return "dailySummaryDto{" +
+        return "DailySummaryDto{" +
                 "date='" + date + '\'' +
                 ", pageviews=" + pageviews +
                 ", visitors=" + visitors +
